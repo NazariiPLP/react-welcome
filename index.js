@@ -1,22 +1,41 @@
+/*
+
+1. Зробіть такий же counter, який крім інкременту буде вміти ще й декрементувати лічильник.
+1*. Лічильник не має опускатись нижче нуля.
+2. Реалізувати крок лічильника
+
+*/
+
 class Counter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            count: 0
+            count: 0,
+            step: 1,
         };
     }
 
     increment() {
-        // todo: state.count++;
         this.setState({
-            count: this.state.count ++
+            count: this.state.count + 1
+        })
+    }
+
+    decrement() {
+        if (this.state.count > 0) {
+        this.setState({
+            count: this.state.count - 1
         });
+        } else {
+        alert('Count can\'t be less than 0');
+        };
     }
 
     render() {
         const h2 = React.createElement('h2', {}, this.state.count);
-        const button = React.createElement('button', {onClick: () => {this.increment()}}, '+');
-        return React.createElement(React.Fragment, {}, h2, button);
+        const buttonIncrement = React.createElement('button', {onClick: () => {this.increment()}}, '+');
+        const buttonDecrement = React.createElement('button', {onClick: () => {this.decrement()}}, '-');
+        return React.createElement(React.Fragment, {}, h2, buttonIncrement, buttonDecrement);
     }
 }
 
@@ -26,20 +45,3 @@ const root = document.querySelector('#root');
 
 ReactDOM.render(component, root);
 
-/*
-
-1. Реакт - бібліотека для створення користувацьких інтерфейсів. 
-2. Ви можете використовувати як звичайний "вванільний" JS, так можете використовувати і React. Це може відбуватись одночасно.
-3. Пропси - це дані, які можна передавати в компонети для того, щоб налаштовувати зовнішній вигляд компонентів.
-4. Для того, щоб React щось відобразив, порібно викликати метод ReactDOM.render().
-Він приймає 2 параметри:
-- елемент, який потрібно відрендерити
-- елемент, в який потрібно рендерити
-5. React оперує React-елементами.
-React-елемент - це об'єкт.
-React-елемент набагато легший, ніж той самий елемент у нативному DOM'і.
-6. З цих React-елементів як маленьких блоків складаються React-компоненти.
-А за React-компонет складаються сторінки, які бачать користувачі. 
-7. Стан компонети - дані, які можуть змінюватися за час життя компоненти.
-
-*/
