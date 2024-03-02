@@ -1,9 +1,7 @@
 /*
 
 1. Зробіть такий же counter, який крім інкременту буде вміти ще й декрементувати лічильник.
-1*. Лічильник не має опускатись нижче нуля.
-2. Реалізувати крок лічильника
-
+1*. Лі|| (this.state.count - this.state.step) < 0
 */
 
 class Counter extends React.Component {
@@ -17,25 +15,47 @@ class Counter extends React.Component {
 
     increment() {
         this.setState({
-            count: this.state.count + 1
+            count: this.state.count + this.state.step
         })
     }
 
     decrement() {
         if (this.state.count > 0) {
         this.setState({
-            count: this.state.count - 1
+            count: this.state.count - this.state.step
         });
-        } else {
-        alert('Count can\'t be less than 0');
+        } else if(this.state.count < 0) {
+            this.state.count = 0;
+            alert('Count can\'t be less than 0');
         };
     }
 
+    stepIncrement() {
+        this.setState({
+            step: this.state.step + 1
+        })
+    }
+
+    stepDecrement() {
+        if (this.state.step > 1) {
+        this.setState({
+            step: this.state.step - 1
+        });
+        } else {
+        alert('Step can\'t be less than 1');
+        };
+    }
+ 
     render() {
+        const h1 = React.createElement('h1', {}, 'Counter');
         const h2 = React.createElement('h2', {}, this.state.count);
         const buttonIncrement = React.createElement('button', {onClick: () => {this.increment()}}, '+');
         const buttonDecrement = React.createElement('button', {onClick: () => {this.decrement()}}, '-');
-        return React.createElement(React.Fragment, {}, h2, buttonIncrement, buttonDecrement);
+        const h1Step = React.createElement('h1', {}, 'Step');
+        const h2Step = React.createElement('h2', {}, this.state.step);
+        const buttonIncrementStep = React.createElement('button', {onClick: () => {this.stepIncrement()}}, '+');
+        const buttonDecrementStep = React.createElement('button', {onClick: () => {this.stepDecrement()}}, '-');
+        return React.createElement(React.Fragment, {}, h1, h2, buttonIncrement, buttonDecrement, h1Step, h2Step, buttonIncrementStep, buttonDecrementStep);
     }
 }
 
