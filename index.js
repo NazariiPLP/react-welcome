@@ -12,30 +12,30 @@ class HeaderComponent extends React.Component {
     }
 }
 
-const component = React.createElement(HeaderComponent, {name: 'John'});
-const component2 = React.createElement(HeaderComponent, {name: 'Oleg'});
+const component = React.createElement(HeaderComponent, {name: 'John'}, 'Text -- John');
+const component2 = React.createElement(HeaderComponent, {name: 'Oleg'}, 'Text -- Oleg');
 
 const parentElement = React.createElement('section', {}, component, component2);
 
 
 const root = document.querySelector('#root');
 
-// ReactDOM.render(parentElement, root);
+ReactDOM.render(parentElement, root);
+  
 
 /*
 
+1. Реакт - бібліотека для створення користувацьких інтерфейсів. 
+2. Ви можете використовувати як звичайний "вванільний" JS, так можете використовувати і React. Це може відбуватись одночасно.
+3. Пропси - це дані, які можна передавати в компонети для того, щоб налаштовувати зовнішній вигляд компонентів.
+4. Для того, щоб React щось відобразив, порібно викликати метод ReactDOM.render().
+Він приймає 2 параметри:
+- елемент, який потрібно відрендерити
+- елемент, в який потрібно рендерити
+5. React оперує React-елементами.
+React-елемент - це об'єкт.
+React-елемент набагато легший, ніж той самий елемент у нативному DOM'і.
+6. З цих React-елементів як маленьких блоків складаються React-компоненти.
+А за React-компонет складаються сторінки, які бачать користувачі. 
+
 */
-
-class GreetingsComponent extends React.Component {
-    render() {
-        const h1 = React.createElement('h1', {}, `Hello, ${this.props.name}`)
-        return h1;
-    }
-}
-
-const componentName = React.createElement(GreetingsComponent, {name: 'Josh'});
-const componentName2 = React.createElement(GreetingsComponent, {name: 'Daniel'});
-
-const parentElement2 = React.createElement('section', {}, componentName, componentName2);
-
-ReactDOM.render(parentElement2, root);
