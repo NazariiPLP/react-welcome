@@ -1,8 +1,4 @@
-/*
-
-1. Зробіть такий же counter, який крім інкременту буде вміти ще й декрементувати лічильник.
-1*. Лі|| (this.state.count - this.state.step) < 0
-*/
+import React from "react";
 
 class Counter extends React.Component {
     constructor(props) {
@@ -59,9 +55,4 @@ class Counter extends React.Component {
     }
 }
 
-const component = React.createElement(Counter);
-
-const root = document.querySelector('#root');
-
-ReactDOM.render(component, root);
-
+export default Counter;
